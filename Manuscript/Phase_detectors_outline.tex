@@ -28,7 +28,65 @@ We will use these methods to determine when to use each particular method, and w
 
 \subsection*{Time-averaged phase}
 
-We should investigate the purposes of average phase. This is most likely to find signatures of regulation between one variable and another, or to find time delays. Regulation of one variable and another can result in a positive phase while time delays can cause negative phase.
+We should investigate the purposes of average phase. This is most likely to find signatures of regulation between one variable and another, or to find time delays. Regulation of one variable by another can result in a positive phase while time delays can cause negative phase.
+
+\section*{Introduction}
+\begin{itemize}
+\item Physiological regulatory systems are reliably non-linear in their responses
+\item Signal transduction, be it physical signals like pressure or cellular signals like phosphorylation, introduces a delay between input and output. 
+\item Non-linearities and delays conspire to generate oscillations in physiological control systems, for example oscillations in renal blood flow, or oscillations in cerebral blood flow.
+\item Oscillating physiological systems can become synchronized if they are somehow physically coupled. For example, sinus arrhythmia caused by respiration. 
+\item Phase information extracted from each oscillating system can provide information about the relationship between the two systems.
+\item Phase is essentially how far along a cycle a particular oscillation is. 
+\item The problem is that phase has been extracted by multiple different methods, and it is unclear whether there is a best option, or if specific methods are ideal for specific purposes.
+\item Noise and time-variance present in physiological data makes this process more difficult.
+\item The goal of this paper is to identify the most accurate methods of extracting phase information and determine how to deal with common hurdles present in physiological data.
+\end{itemize}
+
+\section*{Methods}
+
+\subsection*{Phase detectors}
+\begin{itemize}
+\item Peak detection
+\item Autoregressive modelling
+\item Short time Fourier transform
+\item Hilbert transform
+\item Wavelet transform
+\end{itemize}
+
+
+\subsection*{Simulation}
+\begin{itemize}
+\item Generation of data
+	\begin{itemize}
+	\item A sinusoidal signal containing (number?) frequencies were generated to resemble a typical arterial pressure recording. 
+	\item A second sinusoidal signal was generated so that it was the same as the original signal except each frequency was time-varying within a narrow range.
+	\item Noise was added to the signal at increasing levels so SNR ranged from $1-100 dB$
+	\item Each frequency was isolated with a bandpass filter (elliptic?)
+	\end{itemize}
+\item Testing the phase detectors
+	\begin{itemize}
+	\item Each phase detector was used to determine the instantaneous phase of each frequency band isolated from the simulated data
+	\end{itemize}
+
+\subsection*{Physiological data}
+\begin{itemize}
+\item 
+\end{itemize}
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
