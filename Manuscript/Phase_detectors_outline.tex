@@ -1,0 +1,35 @@
+\documentclass{article}
+\title{Phase paper outline}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Destination journal}
+We would like to submit to an engineering journal. The reason is that we are not developing a \textit{seminal} work, just applying existing methods to multiple new applications. The journal will probably be a non-glamourous IEEE, a general physiology journal, or physiological methods journal. 
+
+
+\section*{Purpose of extracting phase information}
+
+\subsection*{Instantaneous phase}
+We are looking for the interaction between two oscillating physiological systems. Either we are looking for the relationship between two mutually synchronized oscillators, \textit{e.g.} renal autoregulation synchronization, or forced unidirectional synchronization \textit{e.g.} postural control indices and blood pressure. 
+
+The way these interactions are detected is by phase difference, or by phase relationships over time. 
+
+In order to get phase relationships, we need to extract instantaneous phase. There are multiple methods for determining instantaneous phase, but it is not clear which one is best, or even if there is a general "best" method.
+\begin{enumerate}
+\item Hilbert transform
+\item Wavelet transform
+\item Short time Fourier transform
+\item Peak detection
+\end{enumerate}
+
+We will use these methods to determine when to use each particular method, and whether or not each should be used at all.
+
+\subsection*{Time-averaged phase}
+
+We should investigate the purposes of average phase. This is most likely to find signatures of regulation between one variable and another, or to find time delays. Regulation of one variable and another can result in a positive phase while time delays can cause negative phase.
+
+
+
+\end{document}
