@@ -24,7 +24,7 @@ else
        TDPhase = [TDPhase,TDPhase];
     end
     TDSignal = TDSignal(1:length(Time));
-    TDPhase = TDPhase(1:length(Time));
+    TDPhase = TDPhase()
 end
 
 if Graphic
