@@ -17,8 +17,9 @@ for i=1:length(fvec), fac = fac_old + fvec(i)*ts;
     y(i) = sin(2*pi*fac); 
     fac_old = fac; 
 end
+Time = 0:ts:ts*(length(y)-1);
 % plot
 subplot(211) 
     plot(0:tdur:tdur*(n-1),f,'k.',[0 tdur*n],fmean/2*[1 1],[0 tdur*n],fmean*[1.5 1.5]), ylim([0.25 1.75]*fmean)
 subplot(212)
-    plot(0:ts:ts*(length(y)-1),y)
+    plot(Time,y)

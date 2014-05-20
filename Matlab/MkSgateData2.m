@@ -1,4 +1,4 @@
-function [ SgateData ] = MkSgateData2( Length, dt,...
+function [ SgateData, Time, Freqs ] = MkSgateData2( Length, dt,...
     Freq1, Power1, STD1, Phase1, Freq2, Power2, STD2, Phase2)
 %[ SgateData ] = MkSgateData2( Length, dt, Freq1, Power1, STD1, Phase1, Freq2, Power2, STD2, Phase2)
 %
@@ -8,18 +8,26 @@ function [ SgateData ] = MkSgateData2( Length, dt,...
 %Length: length of the time series in seconds
 %dt: sampling rate in seconds
 %%
-Time = (dt:dt:Length);
-Order = 100;
+Time = (0:dt:Length);
+Freqs = (Time(1:ceil(length(Time)/2))./(length(Time)))./dt^2;
+Order = 1000;
 %%
 Oscillator1= zeros(size(Time));
 Fuzz = STD1*randn(Order,1);
+Fuzz2 = STD1*randn(Order,1)/5;
+Fuzz=Fuzz-mean(Fuzz);
+Fuzz2=fliplr(Fuzz2)-mean(fliplr(Fuzz2));
 for N=1:Order
-    FuzzyFreq = Freq1+Fuzz(N);
-    FuzzyPhase = Phase1 +Fuzz(N);
+    N
+    [~, Mindex] = min(abs(Freqs-(Freq1+Fuzz(N))));
+    FuzzyFreq = Freqs(Mindex);
+%    FuzzyFreq = (Freq1+Fuzz(N));
+    FuzzyPhase = Phase1+Fuzz2(N);
     FuzzyPower = Power1*(max(abs(Fuzz))-abs(Fuzz(N)))/...
         sum(max(abs(Fuzz))-abs(Fuzz));
-    Oscillator1=Oscillator1+ FuzzyPower*...
-        sin((Time)*(2*pi)*(FuzzyFreq)-FuzzyPhase);
+%   FuzzyPower=1;
+    Oscillator1=Oscillator1+ awgn(FuzzyPower*...
+        cos((Time)*(2*pi)*(FuzzyFreq)-FuzzyPhase),4,'measured');
 end
 %%
 Oscillator2= zeros(size(Time));
@@ -30,9 +38,10 @@ for N=1:Order
     FuzzyPower = Power2*(max(abs(Fuzz))-abs(Fuzz(N)))/...
         sum(max(abs(Fuzz))-abs(Fuzz));
     Oscillator2=Oscillator2+ FuzzyPower*...
-        sin((Time)*(2*pi)*(FuzzyFreq)-FuzzyPhase);
+        cos((Time)*(2*pi)*(FuzzyFreq)-FuzzyPhase);
 end
 %%
-SgateData = Oscillator1+Oscillator2;
+SgateData = Oscillator1;
+% SgateData = Oscillator1+Oscillator2;
 end
 
