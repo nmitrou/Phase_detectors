@@ -69,6 +69,8 @@ We should investigate the purposes of average phase. This is most likely to find
 \item Phase is essentially how far along a cycle a particular oscillation is. 
 \item The problem is that phase has been extracted by multiple different methods, and it is unclear whether there is a best option, or if specific methods are ideal for specific purposes.
 \item Noise and time-variance present in physiological data makes this process more difficult.
+
+\item In addition to finding the individual phase of an oscillating signal, determination of phase shift, or lag-time, between two related signals is an important physiological parameter that may offer insight into pathophysiological conditions.  
 \item The goal of this paper is to identify the most accurate methods of extracting phase information and determine how to deal with common hurdles present in physiological data.
 \end{itemize}
 
@@ -109,13 +111,13 @@ $$ A = \frac{1}{N} \sum_{m=1}^{N} \frac{\left| \phi _{true} (t) - \phi _{est} (t
 	\begin{itemize}
 	\item phase synchronization among regions of the kidney
 	\end{itemize}
-\item BP and Heart rate
+\item Blood pressure and heart rate
 	\begin{itemize}
-	\item phase lag between changes in heart rate and changes in BP
+	\item [Phase lag between changes in blood pressure and changes in heart rate] \hfill \\
+	The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation).  Therefore, the phase relationship between these two signals might be an important outcome measure for cardiovascular testing.  
 	\end{itemize}
-\item Something about SCG or ECG
-\item cerebral blood flow
-\item JESS
+\item Something about SCG or ECG ?
+\item Cerebral blood flow ?
 \end{itemize}
 
 \end{itemize}
