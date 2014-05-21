@@ -48,9 +48,16 @@ In order to get phase relationships, we need to extract instantaneous phase. The
 
 We will use these methods to determine when to use each particular method, and whether or not each should be used at all.
 
-\subsection*{Time-averaged phase}
+\subsection*{Time-averaged phase, or Frequency domain phase}
 
 We should investigate the purposes of average phase. This is most likely to find signatures of regulation between one variable and another, or to find time delays. Regulation of one variable by another can result in a positive phase while time delays can cause negative phase.
+
+\section*{When each method can fail}
+\begin{itemize}
+\item Frequency domain phase difference can fail when one oscillation leads another by more than half of a cycle.
+\item Time-domain phase is only accessible at one frequency at a time if the Hilbert transform is used
+\item Time-domain phase must have \textit{some} problems if wavelet 
+\end{itemize}
 
 \section*{Introduction}
 \begin{itemize}
@@ -113,7 +120,29 @@ $$ A = \frac{1}{N} \sum_{m=1}^{N} \frac{\left| \phi _{true} (t) - \phi _{est} (t
 
 \end{itemize}
 
+\section*{Results}
 
+	\subsection*{Figures}
+	\begin{enumerate}
+	\item Simulation
+		\begin{enumerate}
+		\item Time series of raw simulated data + added noise
+		\item Power spectrum of the data
+		\item Time-domain phase 
+		\item Accuracy of each detector at a range of signal to noise ratios
+		\end{enumerate}
+	\item Rat data
+		\begin{enumerate}
+		\item BP and cortical perfusion
+		\item Phase interactions between two or three regions on the renal surface
+		\end{enumerate}
+	\item{Human data}
+		\begin{enumerate}
+		\item BP and heart rate
+		\item Use phase to find the lag between a change in bp and a change in heart rate
+		\end{}
+	\end{enumerate}
+	
 
 
 
