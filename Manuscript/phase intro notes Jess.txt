@@ -1,0 +1,12 @@
+Phase shift, or lag-time, between two related signals is an important physiological parameter that may offer insight into pathophysiological conditions.  
+
+
+The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions.  
+
+
+Sometimes it can be more tangible to report absolute time lag (in time units), which depends on the frequency of oscillations and relative phase shift (in degrees). 
+
+
+
+Wichterle et al. 2000 Cross-Spectral Analysis of Heart Rate and Blood Pressure Modulations
+
