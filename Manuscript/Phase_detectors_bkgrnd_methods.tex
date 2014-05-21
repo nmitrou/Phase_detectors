@@ -1,0 +1,29 @@
+\documentclass{article}
+\author{}
+\date{}
+\title{Phase detectors}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+We are considering oscillators. Examples are the oscillatory blood pressure caused by heart rate, or oscillating cerebral or renal blood flow caused by myogenic activity. An oscillation has multiple properties that describe its behaviour. Frequency is the number of complete oscillations per unit time. Phase is the position of an oscillation along its cycle. The start of an oscillation has zero phase and the end of one cycle has $2\pi$ radians phase. Phase is a continuous variable that is constantly increasing as an oscillation progresses. We wrap phase to the interval $[-\pi,\pi]$ or $[0,2\pi]$ for interpretation purposes, but the increasing property of phase can be useful. The faster an oscillation, the faster the phase will increase, such that the rate of increase in phase is equal to the frequency (1). 
+$$ f(t) = \frac{1}{2\pi} \cdot \varphi\left(t\right)'$$
+Therefore detection of phase can be performed using specific phase detectors or by finding instantaneous frequency and then taking the integral.
+
+\section{Hilbert transform}
+The HT is the transformation of a real valued signal $x(t)$ into a complex signal $\hat{x}(t)$ (2) which is the same as $x(t)$ except it has an imaginary component that contains instantaneous phase information.
+
+$$ z(t)=\cos (2\pi f_1 t) e^{(j 2\pi f_2 t)}$$
+
+The inventor of this technique (Gabor 1946) called $\hat{x}(t)$ the analytic signal. The arc tangent of this signal is the instantaneous phase $\varphi (t)$.
+
+\section{Wavelet transform}
+Wavelets are small waves that can be used to identify transient frequencies. Generally, a wavelet function (3) is convolved with a time series as the wavelet is dilated in scale and shifted in time. The function for $\psi$ is called the mother function, and defines the shape of the wavelet. The most commonly used is the Morlet mother function (4), where $\omega_0$ is the center frequency of the wavelet.
+
+$$ W(t,s) = \frac{1}{\sqrt{s}} \int_{-\infty}^\infty x(\tau)\psi ^\star (\frac{\tau -t}{s}) d\tau $$
+$$ \psi (t) = \pi^{-\frac{1}{4}}e^{i \omega_0 t}e^{\frac{-t^2}{2}} $$
+
+\section{Wigner-Ville distribution}
+The Wigner-Ville distribution is a maethod of time frequency representation of a signal that provides further accuracy.
+\end{document}
