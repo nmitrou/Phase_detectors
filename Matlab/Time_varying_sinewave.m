@@ -1,10 +1,8 @@
-function [TDSignal, TDPhase, Time] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic)
-%% time varying signal
-%[Signal] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length)
-  
-  % options
+function [TDSignal, TDPhase, Time, Freqs] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic)
+%[TDSignal, TDPhase, Time, Freqs] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic)
+%
+%%
 Time = 0:DT:Length;
-% freq
 f = STDFreq*randn(Order,1) + CentralFreq;
 TDSignal = [];
 TDPhase = [];
@@ -18,6 +16,7 @@ for N = 1:Order
 end
 if length(Time)<length(TDSignal)
     fprintf('The specified length was too short \nto accomodate the order and sampling frequency.\n Length was changed to %d\n',length(TDSignal))
+    Time = (0:length(TDSignal)-1);
 else
     while length(Time)>length(TDSignal)
        TDSignal = [TDSignal,TDSignal];
@@ -35,4 +34,6 @@ if Graphic
         plot(TDSignal)
     linkaxes([ax1 ax2],'x')
 end
+
+Freqs=(Time./(length(Time)))./DT;
 end
