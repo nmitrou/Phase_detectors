@@ -4,7 +4,11 @@ In addition to finding the individual phase of an oscillating signal, determinat
 
 
 
+<<<<<<< HEAD
 The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation).  Therefore, the phase relationship between these two signals might be an important outcome measure for cardiovascular testing.  
+=======
+The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation; Stewart et al., 2000).  Therefore, the phase relationship between these two signals might be an important outcome measure for cardiovascular testing.  
+>>>>>>> ab68cd151dd2733107ce291325818db5f1453e9f
 
 
 Sometimes it can be more tangible to report absolute time lag (in time units), which depends on the frequency of oscillations and relative phase shift (in degrees). 
@@ -14,8 +18,26 @@ Sometimes it can be more tangible to report absolute time lag (in time units), w
 Wichterle et al. 2000 Cross-Spectral Analysis of Heart Rate and Blood Pressure Modulations
 
 
+<<<<<<< HEAD
 Delay in DM 
 Baroreﬂex analysis in diabetes mellitus: linear and nonlinear approaches
 Michal Javorka • Zuzana Lazarova • Ingrid Tonhajzerova •git
 Zuzana Turianikova • Natasa Honzikova •
 Bohumil Fiser • Kamil Javorka • Mathias Baumert
+=======
+Phase delay in DM: Baroreﬂex analysis in diabetes mellitus: linear and nonlinear approaches
+Michal Javorka • Zuzana Lazarova • Ingrid Tonhajzerova • Zuzana Turianikova • Natasa Honzikova • Bohumil Fiser • Kamil Javorka • Mathias Baumert
+
+Variability of Phase Shift Between Blood Pressure and Heart Rate Fluctuations
+A Marker of Short-Term Circulation Control
+Josef Halámek et al. 2003
+Circulation
+http://circ.ahajournals.org/content/108/3/292.long#ref-3
+“computed as a variability of phase to define stability of the blood pressure–heart rate interaction or defined as the baroreflex sensitivity to define the gain in heart rate response to blood pressure changes, are significantly different in patients at risk for sudden arrhythmic death. In young versus older healthy individuals, only baroreflex gain is different, with the variability of phase being similar in both groups. These measurements of short-term circulatory control might help in risk stratification for sudden cardiac death.”
+
+
+
+Julian Steward, 2000, Pediatric Research (2000) 48, 218–226; doi:10.1203/00006450-200008000-00016
+Autonomic Nervous System Dysfunction in Adolescents with Postural Orthostatic Tachycardia Syndrome and Chronic Fatigue Syndrome Is Characterized by Attenuated Vagal Baroreflex and Potentiated Sympathetic Vasomotion
+http://www.nature.com/pr/journal/v48/n2/full/pr2000180a.html#bib13
+>>>>>>> ab68cd151dd2733107ce291325818db5f1453e9f
