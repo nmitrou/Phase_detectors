@@ -11,8 +11,9 @@ for N = 1:Order
     TempTime = 0:Period-1;
     TempSignal=cos(TempTime/Period*2*pi);
     TDSignal = [TDSignal,TempSignal];
-    TempPhase = 0:2*pi/length(TempTime):2*pi-2*pi/length(TempTime);
-    TDPhase = [TDPhase,TempPhase];
+    TempPhase = 0:2*pi/length(TempTime):pi;
+    TempPhase2 = -pi:2*pi/length(TempTime):0-2*pi/length(TempTime);
+    TDPhase = [TDPhase,TempPhase,TempPhase2];
 end
 if length(Time)<length(TDSignal)
     fprintf('The specified length was too short \nto accomodate the order and sampling frequency.\n Length was changed to %d\n',length(TDSignal))

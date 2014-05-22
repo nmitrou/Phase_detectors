@@ -1,0 +1,21 @@
+
+
+In addition to finding the individual phase of an oscillating signal, determination of phase shift, or lag-time, between two related signals is an important physiological parameter that may offer insight into pathophysiological conditions.  
+
+
+
+The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation).  Therefore, the phase relationship between these two signals might be an important outcome measure for cardiovascular testing.  
+
+
+Sometimes it can be more tangible to report absolute time lag (in time units), which depends on the frequency of oscillations and relative phase shift (in degrees). 
+
+
+
+Wichterle et al. 2000 Cross-Spectral Analysis of Heart Rate and Blood Pressure Modulations
+
+
+Delay in DM 
+Baroreﬂex analysis in diabetes mellitus: linear and nonlinear approaches
+Michal Javorka • Zuzana Lazarova • Ingrid Tonhajzerova •git
+Zuzana Turianikova • Natasa Honzikova •
+Bohumil Fiser • Kamil Javorka • Mathias Baumert
