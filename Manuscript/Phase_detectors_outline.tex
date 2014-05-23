@@ -9,7 +9,7 @@
 We would like to submit to an engineering journal. The reason is that we are not developing a \textit{seminal} work, just applying existing methods to multiple new applications. The journal will probably be a non-glamourous IEEE, a general physiology journal, or physiological methods journal. 
 
 \subsection*{Potential physiology journals}
-
+The paper should have this structure:\cite{muller_estimation_2003}
 \begin{itemize}
 \item Acta physiologica
 \item Physiological Reports
@@ -18,6 +18,8 @@ We would like to submit to an engineering journal. The reason is that we are not
 \item The Journal of General Physiology - methods and approaches
 \item Physiological measurement
 \item Journal of experimental physiology
+\item Journal of Applied Phyiology
+\item E-Life
 \end{itemize}
 
 \subsection*{Potential engineering journals}
@@ -143,6 +145,31 @@ $$ A = \frac{1}{N} \sum_{m=1}^{N} \frac{\left| \phi _{true} (t) - \phi _{est} (t
 		\end{enumerate}
 	\end{enumerate}
 	
+	\subsection*{Tables}
+		\begin{enumerate}
+			\item Simulation
+			\begin{enumerate}
+			\item Noise conversation
+				\begin{itemize}
+					\item Add gaussian noise from snr=$\infty$ up to when it breaks down.
+					\item It breaks down when 0 is not in the 95\% confidence interval of Bland-Altman-style statistics.		
+				\end{itemize}
+			\item Chirp (Frequency from point A to point B)
+				\begin{itemize}
+					\item Specifically to talk about limits to the bandpass filtering needed for the Hilbert method.
+				\end{itemize}
+			\item Length of signal
+				\begin{itemize}
+					\item Shorten the signal until techniques breakdown.
+					\item Relative to frequency.
+				\end{itemize}		
+			\end{enumerate}
+			\item Physiological Data
+				
+		\end{enumerate}
+		
+\bibliographystyle{plain}
+\bibliography{OutlineBib}
 
 
 
