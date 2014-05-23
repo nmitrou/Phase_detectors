@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Phase_detectors_outline.aux
 The style file: plain.bst
 Database file #1: OutlineBib.bib
-You've used 1 entry,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            505 strings with 4245 characters,
-and the built_in function-call counts, 497 in all, are:
-= -- 45
-> -- 33
+            540 strings with 5422 characters,
+and the built_in function-call counts, 2518 in all, are:
+= -- 240
+> -- 161
 < -- 0
-+ -- 13
-- -- 12
-* -- 49
-:= -- 90
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 9
++ -- 65
+- -- 58
+* -- 233
+:= -- 439
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 47
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 11
-empty$ -- 30
-format.name$ -- 12
-if$ -- 93
+cite$ -- 6
+duplicate$ -- 66
+empty$ -- 159
+format.name$ -- 58
+if$ -- 484
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 7
+int.to.str$ -- 6
+missing$ -- 6
+newline$ -- 34
+num.names$ -- 12
+pop$ -- 34
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 41
 quote$ -- 0
-skip$ -- 7
+skip$ -- 43
 stack$ -- 0
-substring$ -- 36
-swap$ -- 1
+substring$ -- 169
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
+type$ -- 24
 warning$ -- 0
-while$ -- 4
-width$ -- 2
-write$ -- 13
+while$ -- 24
+width$ -- 7
+write$ -- 70
