@@ -1,4 +1,4 @@
-function [TDSignal, TDPhase, Time, Freqs] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic)
+function [TDSignal, TDPhase, TDPhaseUnwrap, Time, Freqs] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic)
 %[TDSignal, TDPhase, Time, Freqs] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic)
 %
 %%
@@ -8,12 +8,12 @@ TDSignal = [];
 TDPhase = [];
 for N = 1:Order
     Period = round(1/f(N)/DT);
+    AngFreq = (2*pi)/Period;
     TempTime = 0:Period-1;
     TempSignal=cos(TempTime/Period*2*pi);
     TDSignal = [TDSignal,TempSignal];
-    TempPhase = 0:2*pi/length(TempTime):pi;
-    TempPhase2 = -pi:2*pi/length(TempTime):0-2*pi/length(TempTime);
-    TDPhase = [TDPhase,TempPhase,TempPhase2];
+    TempPhase = AngFreq*TempTime;
+    TDPhase = [TDPhase,TempPhase];
 end
 if length(Time)<length(TDSignal)
     fprintf('The specified length was too short \nto accomodate the order and sampling frequency.\n Length was changed to %d\n',length(TDSignal))
@@ -23,18 +23,29 @@ else
        TDSignal = [TDSignal,TDSignal];
        TDPhase = [TDPhase,TDPhase];
     end
-    TDSignal = TDSignal(1:length(Time));
+    TDSignal = TDSignal(1:length(Time))';
     TDPhase = TDPhase(1:length(Time));
 end
 
+TDPhaseUnwrap = unwrap(TDPhase);
+Freqs = f;
+
 if Graphic
     figure(101); clf;
-    ax1=subplot(211);
-        plot(TDPhase)
-    ax2=subplot(212);
+    ax1=subplot(311);
         plot(TDSignal)
+            ylabel 'Amplitude'
+            axis tight
+    ax2=subplot(312);
+        plot(TDPhaseUnwrap)
+            ylabel 'Phase (rad)'
+            axis tight
+    ax3=subplot(313);
+        plot(Freqs,'k.')
+        line([0 length(Freqs)],[CentralFreq CentralFreq],'color','k','LineStyle','--')
+            ylabel 'Frequency (Hz)'
+  
     linkaxes([ax1 ax2],'x')
 end
 
-Freqs=(Time./(length(Time)))./DT;
 end
