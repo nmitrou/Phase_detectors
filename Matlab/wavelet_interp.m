@@ -1,4 +1,4 @@
-function [TDPhase] =  wavelet_interp(TDSignal, DT, Graphic)
+function TDPhase =  wavelet_interp(TDSignal, DT, Graphic)
 %%
 Time = 0:length(TDSignal)-1;
 Time=Time.*DT;
@@ -16,19 +16,19 @@ Power = abs(WN).^2;
 if Graphic
     figure(1);clf;
     mesh(Time, Period, Power) 
-    view(45,90);
+    view(90,45);
     colormap(hot)
 end
-%%
+%
 Size = size(Power,2);
 Phase_max = zeros(Size,1);
 for k = 1:Size
     [~,TempPeriod] = max(Power(:,k));
     Phase_max(k) = angle(WN(TempPeriod,k));
 end
-Phase_max_u = unwrap(Phase_max)';
-size(Phase_max)
-TDPhase = wrapToPi(Phase_max_u)';
+TDPhase = unwrap(Phase_max)';
+% size(Phase_max)
+% TDPhase = wrapToPi(Phase_max_u)';
 if Graphic
    figure(2); clf
    plot(TDPhase);
