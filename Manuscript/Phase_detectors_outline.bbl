@@ -1,0 +1,42 @@
+\begin{thebibliography}{1}
+
+\bibitem{farge_wavelet_1992}
+M~Farge.
+\newblock Wavelet transforms and their applications to turbulence.
+\newblock {\em Annual Review of Fluid Mechanics}, 24(1):395--458, 1992.
+
+\bibitem{halamek_variability_2003}
+Josef Hal{\'a}mek, Tom{\'a}{\v s} K{\'a}ra, Pavel Jur{\'a}k, Miroslav Sou{\v
+  c}ek, Darrel~P. Francis, L.~Ceri Davies, Win~K. Shen, Andrew J.~S. Coats,
+  Miroslav Nov{\'a}k, Zuzana Nov{\'a}kov{\'a}, Roman Panovsk{\'y}, Ji{\v
+  r}{\'\i} Toman, Josef {\v S}umbera, and Virend~K. Somers.
+\newblock Variability of phase shift between blood pressure and heart rate
+  fluctuations a marker of short-term circulation control.
+\newblock {\em Circulation}, 108(3):292--297, July 2003.
+\newblock {PMID:} 12860920.
+
+\bibitem{muller_estimation_2003}
+T.~M{\"u}ller, M.~Lauk, M.~Reinhard, A.~Hetzel, C.~H. L{\"u}cking, and
+  J.~Timmer.
+\newblock Estimation of delay times in biological systems.
+\newblock {\em Annals of Biomedical Engineering}, 31(11):1423--1439, December
+  2003.
+
+\bibitem{ottesen_modelling_1997}
+Johnny~T. Ottesen.
+\newblock Modelling of the baroreflex-feedback mechanism with time-delay.
+\newblock {\em Journal of Mathematical Biology}, 36(1):41--63, November 1997.
+
+\bibitem{tonhajzerova_cardiac_2011}
+I.~Tonhajzerova, I.~Ondrejka, K.~Javorka, A.~Calkovska, and M.~Javorka.
+\newblock Cardiac vagal control in depression and attention
+  {Deficit/Hyperactivity} disorder.
+\newblock {\em Acta Medica Martiniana}, 11(Supplement 1):46--51, 2011.
+
+\bibitem{torrence_practical_1998}
+Christopher Torrence and Gilbert~P. Compo.
+\newblock A practical guide to wavelet analysis.
+\newblock {\em Bulletin of the American Meteorological Society}, 79(1):61--78,
+  January 1998.
+
+\end{thebibliography}

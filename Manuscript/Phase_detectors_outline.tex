@@ -9,7 +9,7 @@
 We would like to submit to an engineering journal. The reason is that we are not developing a \textit{seminal} work, just applying existing methods to multiple new applications. The journal will probably be a non-glamourous IEEE, a general physiology journal, or physiological methods journal. 
 
 \subsection*{Potential physiology journals}
-
+The paper should have this structure:\cite{muller_estimation_2003}
 \begin{itemize}
 \item Acta physiologica
 \item Physiological Reports
@@ -18,6 +18,8 @@ We would like to submit to an engineering journal. The reason is that we are not
 \item The Journal of General Physiology - methods and approaches
 \item Physiological measurement
 \item Journal of experimental physiology
+\item Journal of Applied Phyiology
+\item E-Life
 \end{itemize}
 
 \subsection*{Potential engineering journals}
@@ -63,7 +65,7 @@ We should investigate the purposes of average phase. This is most likely to find
 \begin{itemize}
 \item Physiological regulatory systems are reliably non-linear in their responses
 \item Signal transduction, be it physical signals like pressure or cellular signals like phosphorylation, introduces a delay between input and output. 
-\item Non-linearities and delays conspire to generate oscillations in physiological control systems, for example oscillations in renal blood flow, or oscillations in cerebral blood flow.
+\item Non-linearities and delays \cite{ottesen_modelling_1997} conspire to generate oscillations in physiological control systems, for example oscillations in renal blood flow, or oscillations in cerebral blood flow.
 \item Oscillating physiological systems can become synchronized if they are somehow physically coupled. For example, sinus arrhythmia caused by respiration. 
 \item Phase information extracted from each oscillating system can provide information about the relationship between the two systems.
 \item Phase is essentially how far along a cycle a particular oscillation is. 
@@ -83,8 +85,8 @@ Homeostasis is maintained by numerous interacting physiological control systems.
 \item Peak detection
 \item Autoregressive modelling
 \item Short time Fourier transform
-\item Hilbert transform
-\item Wavelet transform
+\item Hilbert transform \cite{muller_estimation_2003}
+\item Wavelet transform \cite{farge_wavelet_1992,torrence_practical_1998}
 \end{itemize}
 
 
@@ -100,7 +102,7 @@ Homeostasis is maintained by numerous interacting physiological control systems.
 \item Testing the phase detectors
 	\begin{itemize}
 	\item Each phase detector was used to determine the instantaneous phase of each frequency band isolated from the simulated data
-	\item The accuracy of the estimated instantaneous phase was calculated as ???
+	\item The accuracy of the estimated instantaneous phase will be calculated using Bland-Altman statistics. The closet mean to zero wins. Techniques are deemed as broken when zero is not within $\overline{u}\pm1.96\sigma$
 	\end{itemize}
 	
 \subsection*{Accuracy of phase estimates}
@@ -117,8 +119,12 @@ $$ A = \frac{1}{N} \sum_{m=1}^{N} \frac{\left| \phi _{true} (t) - \phi _{est} (t
 	\begin{itemize}
 	\item Phase lag between changes in blood pressure and changes in heart rate
 	
+<<<<<<< HEAD
 The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation; Stewart et al., 2000).  Therefore, the phase relationship between these two signals is an important outcome measure for cardiovascular testing.  
 
+=======
+	\item The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathological conditions \cite{tonhajzerova_cardiac_2011} and more variable/unstable in other conditions (\cite{halamek_variability_2003}; Stewart et al., 2000).  Therefore, the phase relationship between these two signals is an important outcome measure for cardiovascular testing.  
+>>>>>>> 827626432738cf61b46be3d1187b6b7160e14265
 	\end{itemize}
 \item Something about SCG or ECG ?
 \item Cerebral blood flow ?
@@ -148,6 +154,31 @@ The oscillations of blood pressure and heart rate are often compared using cross
 		\end{enumerate}
 	\end{enumerate}
 	
+	\subsection*{Tables}
+		\begin{enumerate}
+			\item Simulation
+			\begin{enumerate}
+			\item Noise conversation
+				\begin{itemize}
+					\item Add gaussian noise from snr=$\infty$ up to when it breaks down.
+					\item It breaks down when 0 is not in the 95\% confidence interval of Bland-Altman-style statistics.		
+				\end{itemize}
+			\item Chirp (Frequency from point A to point B)
+				\begin{itemize}
+					\item Specifically to talk about limits to the bandpass filtering needed for the Hilbert method.
+				\end{itemize}
+			\item Length of signal
+				\begin{itemize}
+					\item Shorten the signal until techniques breakdown.
+					\item Relative to frequency.
+				\end{itemize}		
+			\end{enumerate}
+			\item Physiological Data
+				
+		\end{enumerate}
+		
+\bibliographystyle{plain}
+\bibliography{OutlineBib}
 
 
 
