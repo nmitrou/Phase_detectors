@@ -1,18 +1,18 @@
-function [MeanDiff_Wave,MeanDiff_Hilb,STDDiff_Wave,STDDiff_Hilb] = Phase_detectors_compare_run(CentralFreq,STDFreq,Order,Length,DT,Graphic,SNRMin,SNRMax,NoiseSteps)
+function [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,Difference_Hilb1,MeanEst_Hilb1,MeanDiff_Hilb1,STDDiff_Hilb1,Difference_Wave1,MeanEst_Wave1,MeanDiff_Wave1,STDDiff_Wave1,Difference_Hilb,MeanEst_Hilb,MeanDiff_Hilb,STDDiff_Hilb,Difference_Wave,MeanEst_Wave,MeanDiff_Wave,STDDiff_Wave] = Phase_detectors_compare_run(CentralFreq,STDFreq,Order,Length,DT,Graphic,SNRMin,SNRMax,NoiseSteps)
 %% Make original test signal
-CentralFreq = 0.5;
+CentralFreq = 0.2;
 STDFreq = CentralFreq*0.2;
-Order = 3;
-Length = 1000;
+Order = 8;
+Length = 100;
 DT = 0.1;
 Graphic = 0;
 
 [TDSignal, ~, TDPhaseUnwrap, Time, ~] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic);
 
 % Add noise to test signal
-SNRMin = -10;
-SNRMax = 10;
-NoiseSteps = 21;
+% SNRMin = -10;
+% SNRMax = 10;
+% NoiseSteps = 21;
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
 
 for k = 1:NoiseSteps
@@ -37,7 +37,7 @@ for k = 1:NoiseSteps
     GWNPhase_Wave(:,k) = wavelet_interp(GWNSignal(:,k), DT, Graphic);
 end
 
-%% Determine agreement between each estimate and the true phase (Bland-Altman)
+% Determine agreement between each estimate and the true phase (Bland-Altman)
 Graphic = 0;
 % for noise free signals
 [Difference_Hilb1,MeanEst_Hilb1,MeanDiff_Hilb1,STDDiff_Hilb1] = BlandAltman(TDPhaseUnwrap,TDPhase_Hilb',Graphic);
