@@ -48,7 +48,7 @@ In order to get phase relationships, we need to extract instantaneous phase. The
 
 We will use these methods to determine when to use each particular method, and whether or not each should be used at all.
 
-\subsection*{Time-averaged phase, or Frequency domain phase}
+\subsection*{Frequency domain phase}
 
 We should investigate the purposes of average phase. This is most likely to find signatures of regulation between one variable and another, or to find time delays. Regulation of one variable by another can result in a positive phase while time delays can cause negative phase.
 
@@ -115,12 +115,10 @@ $$ A = \frac{1}{N} \sum_{m=1}^{N} \frac{\left| \phi _{true} (t) - \phi _{est} (t
 	\end{itemize}
 \item Blood pressure and heart rate
 	\begin{itemize}
-	\item [Phase lag between changes in blood pressure and changes in heart rate] \hfill \\
-<<<<<<< HEAD
-	The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation).  Therefore, the phase relationship between these two signals might be an important outcome measure for cardiovascular testing.  
-=======
-	The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation; Stewart et al., 2000).  Therefore, the phase relationship between these two signals is an important outcome measure for cardiovascular testing.  
->>>>>>> ab68cd151dd2733107ce291325818db5f1453e9f
+	\item Phase lag between changes in blood pressure and changes in heart rate
+	
+The oscillations of blood pressure and heart rate are often compared using cross-spectral analyses to quantify baroreflex function.  With this method, the coherence, transfer function gain, and phase relationship between the two signals are quantified.  The phase shift between blood pressure and heart rate is lengthened in some pathophysiological conditions (Javorka et al, 2011) and more variable/unstable in other conditions (Halamek et al, 2003 Circulation; Stewart et al., 2000).  Therefore, the phase relationship between these two signals is an important outcome measure for cardiovascular testing.  
+
 	\end{itemize}
 \item Something about SCG or ECG ?
 \item Cerebral blood flow ?
@@ -134,8 +132,7 @@ $$ A = \frac{1}{N} \sum_{m=1}^{N} \frac{\left| \phi _{true} (t) - \phi _{est} (t
 	\begin{enumerate}
 	\item Simulation
 		\begin{enumerate}
-		\item Time series of raw simulated data + added noise
-		\item Power spectrum of the data
+		\item Time series of raw simulated data
 		\item Time-domain phase 
 		\item Accuracy of each detector at a range of signal to noise ratios
 		\end{enumerate}
