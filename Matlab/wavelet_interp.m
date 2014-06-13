@@ -1,4 +1,4 @@
-function TDPhase =  wavelet_interp(TDSignal, DT, Graphic)
+function [TDPhase, WrappedPhase] =  wavelet_interp(TDSignal, DT, Graphic)
 %%
 Time = 0:length(TDSignal)-1;
 Time=Time.*DT;
@@ -26,6 +26,7 @@ for k = 1:Size
     [~,TempPeriod] = max(Power(:,k));
     Phase_max(k) = angle(WN(TempPeriod,k));
 end
+WrappedPhase = Phase_max';
 TDPhase = unwrap(Phase_max)';
 % size(Phase_max)
 % TDPhase = wrapToPi(Phase_max_u)';

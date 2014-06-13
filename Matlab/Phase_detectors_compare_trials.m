@@ -27,10 +27,6 @@
 % MeanEst_Hilb1 - Mean of True phase and Hilbert estimated phase
 % Difference_Wave1 - Difference between true phase and Wavelet estimated phase without noise
 % MeanEst_Wave1 - Mean of True phase and Wavelet estimated phase
-
-clear all
-close all
-clc
 %%
 tic
 
@@ -39,23 +35,38 @@ STDFreq = CentralFreq*0.1;
 Order = 12;
 Length = 120;
 DT = 0.1;
-Graphic = 1;
+Graphic = 0;
 
-SNRMin = -10;
+SNRMin = 0.001;
 SNRMax = 4;
-NoiseSteps = 15;
+NoiseSteps = 50;
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
 
 
 Trials = 4;
-
+%%
+Difference_Hilb = [];
+MeanEst_Hilb = [];
+Difference_Wave = [];
+MeanEst_Wave = [];
+MeanDiff_Hilb = zeros([Trials,NoiseSteps]);
+STDDiff_Hilb = zeros([Trials,NoiseSteps]);
+MeanDiff_Wave = zeros([Trials,NoiseSteps]);
+STDDiff_Wave = zeros([Trials,NoiseSteps]);
 for k = 1:Trials
-    [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,Difference_Hilb1,MeanEst_Hilb1,MeanDiff_Hilb1,STDDiff_Hilb1,Difference_Wave1,MeanEst_Wave1,MeanDiff_Wave1,STDDiff_Wave1,Difference_Hilb,MeanEst_Hilb,MeanDiff_Hilb(k,:),STDDiff_Hilb(k,:),Difference_Wave,MeanEst_Wave,MeanDiff_Wave(k,:),STDDiff_Wave(k,:)] = Phase_detectors_compare_run(CentralFreq,STDFreq,Order,Length,DT,0,SNRMin,SNRMax,NoiseSteps);
-% MeanDiff_Wave(k,:),MeanDiff_Hilb(k,:),STDDiff_Wave(k,:),STDDiff_Hilb(k,:)
+    
+    [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,Difference_Hilb1,...
+        MeanEst_Hilb1,MeanDiff_Hilb1,STDDiff_Hilb1,Difference_Wave1,...
+        MeanEst_Wave1,MeanDiff_Wave1,STDDiff_Wave1,Difference_Hilb,...
+        MeanEst_Hilb,MeanDiff_Hilb(k,:),STDDiff_Hilb(k,:),...
+        Difference_Wave,MeanEst_Wave,MeanDiff_Wave(k,:),STDDiff_Wave(k,:)] = ...
+        Phase_detectors_compare_run(CentralFreq,STDFreq,Order,Length,...
+        DT,Graphic,SNRMin,SNRMax,NoiseSteps);
 end
 
 toc
 %
+Graphic=1;
 if Graphic == 1
 %% Plot TDSignal
 
@@ -77,7 +88,7 @@ ylim([ymin ymax])
 text(((xmax-xmin)/2),-1.4,'Time (s)','HorizontalAlignment','center')
 text(0,-6,'Ampltidude','HorizontalAlignment','center','Rotation',90)
 %% Plot True, Hilbert and Wavelet Phase
-figure(2)
+figure(2); clf;
 plot(Time,TDPhaseUnwrap,'k-',Time,unwrap(TDPhase_Hilb),'bo',Time,TDPhase_Wave,'ro')
 xlim([0 100])
 xlabel 'Time (s)'
@@ -92,8 +103,8 @@ legend('True','Hilbert','Wavelet')
     axis tight
 
 %% Bland-Altman plot for noise-free signal
-figure(3)
-plot(MeanEst_Hilb1,Difference_Hilb1,'k-',MeanEst_Wave1,Difference_Wave1,'ro')
+figure(3);clf;
+plot(MeanEst_Hilb1,Difference_Hilb1,'k-',MeanEst_Wave1,Difference_Wave1,'r--')
 ylim([-1.5 1.5])
 title 'Bland-Altman plot'
 xlabel 'Mean Estimated phase'
@@ -109,9 +120,28 @@ legend('Hilbert','Wavelet')
 %     plot(MeanEst_Hilb1(xs:xe),Difference_Hilb1(xs:xe),'k-',MeanEst_Wave1(xs:xe),Difference_Wave1(xs:xe),'ro')
 %     set(gca,'XTickLabel','','YTickLabel','')
 %     axis tight
-
+%% Bland-Altman plot for most noise for last trial
+figure(4);clf;
+length(MeanEst_Hilb(:,1))
+length(MeanDiff_Hilb(:,1))
+plot(Time,Difference_Hilb(:,1),'k*',Time,Difference_Wave(:,1),'r*')
+%ylim([-1.5 1.5])
+title 'Bland-Altman plot for smallest SNR'
+xlabel 'Mean Estimated phase'
+ylabel 'Difference (Estimated phase - True phase)'
+legend('Hilbert','Wavelet')
+%
+%     axes('Position',[0.6,0.2,0.3,0.3])
+%     box on
+%     xs = 100;
+%     xe = 200;
+%     Difference_Hilb1 = Difference_Hilb1';
+%     Difference_Wave1 = Difference_Wave1';
+%     plot(MeanEst_Hilb1(xs:xe),Difference_Hilb1(xs:xe),'k-',MeanEst_Wave1(xs:xe),Difference_Wave1(xs:xe),'ro')
+%     set(gca,'XTickLabel','','YTickLabel','')
+%     axis tight
 %% Figure for Bland-Altman after trials at multiple SNR
-figure(4)
+figure(5); clf
 for k = 1:Trials
 plot(NoiseVec,MeanDiff_Hilb(k,:),'k.',NoiseVec,MeanDiff_Wave(k,:),'ro'); hold on
 xlabel 'SNR (dB)'

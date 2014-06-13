@@ -1,6 +1,6 @@
 
 function [Difference,MeanEst,MeanDiff,STDDiff] = BlandAltman(Sig1,Sig2,Graphic)
-
+%%
 
 EstPhases = [Sig1; Sig2]';
 

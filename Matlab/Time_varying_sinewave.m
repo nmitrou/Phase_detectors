@@ -27,6 +27,7 @@ else
     TDPhase = TDPhase(1:length(Time));
 end
 
+TDPhase = wrapToPi(TDPhase);
 TDPhaseUnwrap = unwrap(TDPhase);
 Freqs = f;
 

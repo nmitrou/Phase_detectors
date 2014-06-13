@@ -1,4 +1,4 @@
-function [TDPhase] =  hilbert_interp(Signal,Dt,f1,f2,Graphic)
+function [TDPhase, WrappedPhase] =  hilbert_interp(Signal,Dt,f1,f2,Graphic)
 %% Hilbert Interp %%
 % function purpose is to use the hilbert transform of a signal and estimate
 % the instantaneous phase and frequency of the signal
@@ -23,6 +23,7 @@ Signal_f = filtfilt(b,a,Signal); %bandpass filter the input signal
 
 xh = hilbert(Signal_f);
 phh = angle(xh);
+WrappedPhase = phh;
 TDPhase = unwrap(phh);
 
     w = diff(TDPhase).*(2*2/pi);
@@ -46,6 +47,7 @@ phh4=interp1(tt,phh4,ti,'linear','extrap')';
 phhw = wrapToPi(phh4);
 
 if Graphic == 1
+    figure(102); clf;
     l = 0.15;
     w = 0.7;
     h = 0.35;
