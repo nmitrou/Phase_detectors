@@ -1,4 +1,4 @@
-function [TDPhase] =  hilbert_interp(Signal,Dt,f1,f2,Graphic)
+function TDPhase =  hilbert_interp(Signal, Dt, Filt, f1, f2, Graphic)
 %% Hilbert Interp %%
 % function purpose is to use the hilbert transform of a signal and estimate
 % the instantaneous phase and frequency of the signal
@@ -10,7 +10,7 @@ function [TDPhase] =  hilbert_interp(Signal,Dt,f1,f2,Graphic)
 % Graphic - 1 for plots, 0 for no plots
 %%%%%%%%%% Outputs %%%%%%%%%%
 % TDPhase - unwrapped instantaneous phase with phase slips interpolated
-
+if Filt == 1
 Fs = 1/Dt;  % Sampling Frequency
 %FOR MYO
 N   = 6;    % Order
@@ -20,6 +20,12 @@ Hd = design(h, 'butter');
 [b,a]=sos2tf(Hd.sosMatrix,Hd.ScaleValues);
 
 Signal_f = filtfilt(b,a,Signal); %bandpass filter the input signal
+
+elseif Filt == 0
+    Signal_f = Signal;
+    
+end
+
 
 xh = hilbert(Signal_f);
 phh = angle(xh);
@@ -43,8 +49,6 @@ phh4=phh(2:end);
 phh4(kk1)=[];
 phh4=interp1(tt,phh4,ti,'linear','extrap')';
 
-phhw = wrapToPi(phh4);
-
 if Graphic == 1
     l = 0.15;
     w = 0.7;
@@ -54,14 +58,14 @@ if Graphic == 1
     b2 = b1 + h + s;
     
     
-    tp = Dt:Dt:length(phhw)*Dt;
+    tp = Dt:Dt:length(TDPhase)*Dt;
     
     subplot('Position',[l,b2,w,h])
     plot(t,Signal,'k-')
     ylabel 'Amplitude'
     set(gca,'XTickLabel','')
     subplot('Position',[l,b1,w,h])
-    plot(tp,phhw,'k.')
+    plot(tp,TDPhase,'k.')
     ylabel 'Instantaneous phase (rad)'
     xlabel 'Time (s)'
 end
