@@ -68,7 +68,7 @@ xmin = 0;
 ymin = -1.2;
 ymax = 1.2;
 figure(1)
-plot(Time,TDSignal,'k-','LineWidth',LineW)
+plot(Time,TDSignal,'k-','LineWidth',1)
 xlim([xmin xmax])
 ylim([ymin ymax])
 % xlabel 'Time (s)'
