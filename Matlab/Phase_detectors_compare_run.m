@@ -10,9 +10,9 @@ Graphic = 0;
 [TDSignal, ~, TDPhaseUnwrap, Time, ~] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic);
 
 % Add noise to test signal
-% SNRMin = -10;
-% SNRMax = 10;
-% NoiseSteps = 21;
+SNRMin = -10;
+SNRMax = 10;
+NoiseSteps = 21;
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
 
 for k = 1:NoiseSteps
@@ -23,18 +23,19 @@ end
 f1 = CentralFreq-(0.5*CentralFreq);
 f2 = CentralFreq+(0.5*CentralFreq);
 
+Filt = 1;
 
-TDPhase_Hilb =  hilbert_interp(TDSignal,DT,f1,f2,Graphic);
+TDPhase_Hilb =  hilbert_interp(TDSignal,DT,Filt,f1,f2,Graphic);
 
 for k = 1:NoiseSteps
-    GWNPhase_Hilb(:,k) = hilbert_interp(GWNSignal(:,k),DT,f1,f2,Graphic);
+    GWNPhase_Hilb(:,k) = hilbert_interp(GWNSignal(:,k),DT,Filt,f1,f2,Graphic);
 end
 % Estimate phase with wavelet transform
 
-TDPhase_Wave =  wavelet_interp(TDSignal, DT, Graphic);
+TDPhase_Wave =  wavelet_interp(TDSignal, DT, Filt, f1, f2, Graphic);
 
 for k = 1:NoiseSteps
-    GWNPhase_Wave(:,k) = wavelet_interp(GWNSignal(:,k), DT, Graphic);
+    GWNPhase_Wave(:,k) = wavelet_interp(GWNSignal(:,k), DT, Filt, f1, f2, Graphic);
 end
 
 % Determine agreement between each estimate and the true phase (Bland-Altman)
