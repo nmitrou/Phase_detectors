@@ -17,8 +17,8 @@ function DetectionRatio = DetectionRatio(Signal,FS,FSigLow,FSigHigh,FNoiseLow,FN
 % find location in frequency range for signal and for noise
 Sigfreq1 = find(f<FSigLow,1,'last');
 Sigfreq2 = find(f>FSigHigh,1,'first');
-Noifreq1 = find(f<FNoiLow,1,'last');
-Noifreq2 = find(f>FNoiHigh,1,'first');
+Noifreq1 = find(f<FNoiseLow,1,'last');
+Noifreq2 = find(f>FNoiseHigh,1,'first');
 % get max power within signal range
 Psig = max(PSD(Sigfreq1:Sigfreq2));
 % get mean power within noise range
