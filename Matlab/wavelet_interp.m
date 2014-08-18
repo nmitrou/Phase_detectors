@@ -17,7 +17,10 @@ h  = fdesign.bandpass('N,F3dB1,F3dB2', N, f1, f2, Fs);
 Hd = design(h, 'butter');
 [b,a]=sos2tf(Hd.sosMatrix,Hd.ScaleValues);
 
-TDSignal = filtfilt(b,a,TDSignal);
+if Filt
+    TDSignal = filtfilt(b,a,TDSignal); %bandpass filter the input signal
+end
+
 
 %computes the wavelets
 [WN,Period,~] = wavelet(TDSignal,DT,pad,dj,s0,J1,mother,param);

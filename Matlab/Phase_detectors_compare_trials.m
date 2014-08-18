@@ -53,6 +53,7 @@ MeanDiff_Hilb = zeros([Trials,NoiseSteps]);
 STDDiff_Hilb = zeros([Trials,NoiseSteps]);
 MeanDiff_Wave = zeros([Trials,NoiseSteps]);
 STDDiff_Wave = zeros([Trials,NoiseSteps]);
+Filt = 1;
 for k = 1:Trials
     
     [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,Difference_Hilb1,...
@@ -61,7 +62,7 @@ for k = 1:Trials
         MeanEst_Hilb,MeanDiff_Hilb(k,:),STDDiff_Hilb(k,:),...
         Difference_Wave,MeanEst_Wave,MeanDiff_Wave(k,:),STDDiff_Wave(k,:)] = ...
         Phase_detectors_compare_run(CentralFreq,STDFreq,Order,Length,...
-        DT,Graphic,SNRMin,SNRMax,NoiseSteps);
+        DT,Graphic,SNRMin,SNRMax,NoiseSteps, Filt);
 end
 
 toc

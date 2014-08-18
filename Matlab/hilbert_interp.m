@@ -1,4 +1,4 @@
-function [TDPhase, WrappedPhase] =  hilbert_interp(Signal,Dt,f1,f2,Graphic)
+function [TDPhase, WrappedPhase] =  hilbert_interp(Signal_f,Dt,Filt, f1,f2,Graphic)
 %% Hilbert Interp %%
 % function purpose is to use the hilbert transform of a signal and estimate
 % the instantaneous phase and frequency of the signal
@@ -15,11 +15,14 @@ Fs = 1/Dt;  % Sampling Frequency
 %FOR MYO
 N   = 6;    % Order
 % Construct an FDESIGN object and call its BUTTER method.
+f1
+f2
 h  = fdesign.bandpass('N,F3dB1,F3dB2', N, f1, f2, Fs);
 Hd = design(h, 'butter');
 [b,a]=sos2tf(Hd.sosMatrix,Hd.ScaleValues);
-
-Signal_f = filtfilt(b,a,Signal); %bandpass filter the input signal
+if Filt
+    Signal_f = filtfilt(b,a,Signal_f); %bandpass filter the input signal
+end
 
 xh = hilbert(Signal_f);
 phh = angle(xh);
@@ -30,18 +33,22 @@ TDPhase = unwrap(phh(20:end-20));
     w = diff(TDPhase).*(2*2/pi);
     wi = w;
 %% find data points where inst. frequency is outside filter pass band, and interpolate across those points
-t = Dt:Dt:length(Signal_f)*Dt;
-k1=find(wi<0);
-kk1=[k1;k1+1;k1-1];
-kk1(kk1<=0)=[];
-kk1(kk1>length(wi))=[];
-ti=t(2:end);
-tt=ti;
-tt(kk1)=[];
-wi(kk1)=[];
-wi=interp1(tt,wi,ti(20:end-20),'linear','extrap'); 
+ t = Dt:Dt:length(Signal_f)*Dt;
+ k1=find(wi<0);
+ kk1=[k1;k1+1;k1-1];
+ kk1(kk1<=0)=[];
+ kk1(kk1>length(wi))=[];
+ ti=t(2:end);
+ ti = ti(20:end-20);
+ tt=ti;
+ tt(kk1)=[];
+% wi(kk1)=[];
+% length(tt)
+% length(wi)
+% length(ti)
+% wi=interp1(tt,wi,ti,'linear','extrap'); 
 %%
-phh4=phh(2:end);
+phh4=WrappedPhase(2:end);
 phh4(kk1)=[];
 phh4=interp1(tt,phh4,ti,'linear','extrap')';
 phh4 = phh4(20:end-20);%Cut off edges to minimize edge effects
