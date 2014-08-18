@@ -37,7 +37,7 @@ Length = 120;
 DT = 0.1;
 Graphic = 0;
 
-SNRMin = -100;
+SNRMin = 0.001;
 SNRMax = 4;
 NoiseSteps = 50;
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);

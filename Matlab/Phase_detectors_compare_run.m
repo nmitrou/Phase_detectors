@@ -12,8 +12,8 @@ function [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,...
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
 
 GWNSignal = zeros([Length/DT+1,NoiseSteps]);
-for k = 1:NoiseSteps
-    GWNSignal(:,k) = awgn(TDSignal,NoiseVec(k),'measured','linear');
+for k = 1:length(NoiseVec)
+    GWNSignal(:,k) = awgn(TDSignal,NoiseVec(k),'measured');
 end
 
 % Estimate phase with hilbert transform
