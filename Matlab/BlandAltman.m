@@ -1,9 +1,12 @@
 
-function [Difference,MeanEst,MeanDiff,STDDiff] = BlandAltman(Sig1,Sig2,Graphic)
+function [Difference,MeanEst,MeanDiff,STDDiff] = BlandAltman(Sig1,Sig2,Graphic, FigNo)
 %%
-
-EstPhases = [Sig1; Sig2]';
-
+Size = size(Sig1);
+if Size(1)>Size(2)
+    EstPhases = [Sig1, Sig2];
+else
+    EstPhases = [Sig1; Sig2]';
+end
 MeanEst = mean(EstPhases,2);
 
 Difference = Sig1 - Sig2;
@@ -12,8 +15,12 @@ MeanDiff = mean(Difference);
 STDDiff = std(Difference);
 
 if Graphic == 1
-    plot(MeanEst,Difference,'ko')
-    xlabel 'Phase'
+    figure(FigNo); clf;
+    plot(MeanEst,Difference,'ko'); hold on;
+    plot([min(MeanEst) max(MeanEst)],[MeanDiff MeanDiff],'r-');
+    plot([min(MeanEst) max(MeanEst)],[MeanDiff+1.96*STDDiff MeanDiff+1.96*STDDiff],'r--');
+    plot([min(MeanEst) max(MeanEst)],[MeanDiff-1.96*STDDiff MeanDiff-1.96*STDDiff],'r--');
+    xlabel 'Mean'
     ylabel 'Difference'
 end
 end
