@@ -21,9 +21,9 @@ SNRLoc = find(NoiseVec==SNRValue);
 Filt = 1;
 f1 = CentralFreq-0.5*CentralFreq;
 f2 = CentralFreq+0.5*CentralFreq;
-
-NoisyPhase_Wave =  wavelet_interp(GWNSignal(:,SNRLoc), DT, f1, f2, Graphic);
-[NoisyPhase_Hilb,~] =  hilbert_interp(GWNSignal(:,SNRLoc),DT,f1,f2,Graphic);
+Graphic = 0;
+NoisyPhase_Wave =  wavelet_interp(GWNSignal(:,SNRLoc), DT, Filt, f1, f2, Graphic);
+[NoisyPhase_Hilb,~] =  hilbert_interp(GWNSignal(:,SNRLoc), DT, Filt, f1, f2, Graphic);
 %% plot signals, phases
 w = 0.5;
 h = 0.26;
@@ -36,31 +36,43 @@ b3 = b2 + h + s;
 
 FontN = 'Arial';
 FontSz = 12;
-LGrey = [0.5 0.5 0.5];
+LGrey = [0.7 0.7 0.7];
 DGrey = [0.3 0.3 0.3];
 
 YMax = 1.1*max(GWNSignal(:,SNRLoc));
 YMin = 1.1*min(GWNSignal(:,SNRLoc));
 
-figure(1)
+figure(1); clf
 
 subplot('Position',[l,b3,w,h])
-    plot(Time,TDSignal,'k-')
-        ylim([-1.2 1.2])
+    plot(Time,TDSignal(30:end-30),'k-')
+        ylim([-1.3 1.3])
         set(gca,'XTickLabel','')
+        box off
+        text(-15,0,'Amplitude','FontName',FontN,'FontSize',FontSz,'HorizontalAlignment','Center','Rotation',90)
+        text(-20,1.3,'A','FontName',FontN,'FontSize',FontSz+4,'FontWeight','Bold','HorizontalAlignment','Center','Rotation',0)
 
+        
 subplot('Position',[l,b2,w,h])
-    plot(Time,GWNSignal(:,SNRLoc),'k-')
+    plot(Time,GWNSignal(30:end-30,SNRLoc),'k-')
         ylim([YMin YMax])
         set(gca,'XTickLabel','')
+        box off
+        text(-15,0,'Amplitude','FontName',FontN,'FontSize',FontSz,'HorizontalAlignment','Center','Rotation',90)
+        text(-20,YMax,'B','FontName',FontN,'FontSize',FontSz+4,'FontWeight','Bold','HorizontalAlignment','Center','Rotation',0)
 
+        
 subplot('Position',[l,b1,w,h])
-    plot(Time,TDPhaseUnwrap,'k-'); hold on
+    plot(Time,TDPhaseUnwrap(30:end-30),'k--'); hold on
     plot(Time,NoisyPhase_Hilb,'color',DGrey)
     plot(Time,NoisyPhase_Wave,'color',LGrey)
         legend('True','Hilbert','Wavelet','Location','NorthWest')
-
-
+        box off
+        text(-15,100,'Phase (rad)','FontName',FontN,'FontSize',FontSz,'HorizontalAlignment','Center','Rotation',90)
+        text(60,-40,'Time (s)','FontName',FontN,'FontSize',FontSz,'HorizontalAlignment','Center','Rotation',0)
+        text(-20,200,'C','FontName',FontN,'FontSize',FontSz+4,'FontWeight','Bold','HorizontalAlignment','Center','Rotation',0)
+%%
+print('-depsc2','/Users/nickmitrou/Documents/SFU/PhD/Projects/Phase_detectors/Results/Figure1.eps')
 
 
 
