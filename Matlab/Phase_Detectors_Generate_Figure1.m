@@ -22,8 +22,8 @@ Filt = 1;
 f1 = CentralFreq-0.5*CentralFreq;
 f2 = CentralFreq+0.5*CentralFreq;
 
-NoisyPhase_Wave =  wavelet_interp(GWNSignal(:,SNRLoc), DT, Filt, f1, f2, Graphic);
-[NoisyPhase_Hilb,~] =  hilbert_interp(GWNSignal(:,SNRLoc),DT,Filt,f1,f2,Graphic);
+NoisyPhase_Wave =  wavelet_interp(GWNSignal(:,SNRLoc), DT, f1, f2, Graphic);
+[NoisyPhase_Hilb,~] =  hilbert_interp(GWNSignal(:,SNRLoc),DT,f1,f2,Graphic);
 %% plot signals, phases
 w = 0.5;
 h = 0.26;
