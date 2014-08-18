@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\begin{document}
+\title{Hilbert transform as a phase detector}
+\author{}
+\date{}
+\maketitle
+The Hilbert transform is a simple linear operation that allows the detection of instantaneous phase from time series data. The overall process of extracting instantaneous phase is a three-step process: \begin{enumerate}
+	\item Hilbert transform time-series data 
+	\item Take the absolute value of the complex-valued result of the Hilbert transform
+	\item Perform the inverse tangent on the real and imaginary portions of the result to get polar coordinates, which are equal to the phase of the original data
+\end{enumerate}	
+Here, we will explain why the Hilbert transform allows phase extraction from data. The non-mathematical reader can skip this section and continue in the next paragraph. We used the analytic signal concept introduced by Gabor in 1946. The first step in this process is to form a complex-valued signal from the scalar time series $s\left(t\right)$ by the following equation $$ \zeta\left(t\right)=s\left(t\right)+\tilde{s}\left(t\right)=A\left(t\right)e^{\phi t}$$ where $\tilde{s}\left(t\right)$ is the Hilbert transform of the original series $s\left(t\right)$.
+
+The Hilbert transform is a linear operation that transforms a time-domain signal into another time-domain signal. The Hilbert transform acts as a filter whose magnitude characteristics are
+$$ |H(f)| = 1 \mbox{ for all f }$$
+and whose phase characteristics are
+\[ H(f)=
+	\begin{cases}
+		\frac{-\pi}{2} & f > 0\\
+		\frac{\pi}{2} & f < 0
+	\end{cases}
+\]
+
+meaning that is essence the Hilbert transform causes a phase shift 
+
+Apparently this boils down to the convolution of a time series with $\frac{1}{\pi t}$ as such
+$$\phi (t) = s(t) \ast \frac{1}{\pi t}$$
+
+\textit{It is still not intuitively obvious why this gives you the phase of a signal, but all the engineering papers seem to take this for granted.}
+\end{document}
