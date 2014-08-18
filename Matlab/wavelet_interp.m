@@ -24,9 +24,10 @@ Size = size(Power,2);
 Phase_max = zeros(Size,1);
 for k = 1:Size
     [~,TempPeriod] = max(Power(:,k));
-    Phase_max(k) = angle(WN(TempPeriod,k));
+    Phase_max(k) = mean(angle(WN(max(TempPeriod-2,1):min(TempPeriod+2,end),k)));
 end
 WrappedPhase = Phase_max';
+Phase_max = Phase_max(20:end-20);%Cut off edges to minimize edge effects
 TDPhase = unwrap(Phase_max)';
 % size(Phase_max)
 % TDPhase = wrapToPi(Phase_max_u)';

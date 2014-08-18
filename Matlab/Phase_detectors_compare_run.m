@@ -23,8 +23,8 @@ f2 = CentralFreq+(0.5*CentralFreq);
 
 TDPhase_Hilb =  hilbert_interp(TDSignal,DT,f1,f2,Graphic);
 
-GWNPhase_Hilb = zeros([Length/DT+1,NoiseSteps]);
-GWNWrappedPhase_Hilb = zeros([Length/DT+1,NoiseSteps]);
+GWNPhase_Hilb = zeros([Length/DT+1-39,NoiseSteps]);
+GWNWrappedPhase_Hilb = zeros([Length/DT+1-39,NoiseSteps]);
 for k = 1:NoiseSteps
     [GWNPhase_Hilb(:,k), GWNWrappedPhase_Hilb(:,k)] = hilbert_interp(GWNSignal(:,k),DT,f1,f2,Graphic);
 end

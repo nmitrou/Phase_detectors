@@ -24,7 +24,8 @@ Signal_f = filtfilt(b,a,Signal); %bandpass filter the input signal
 xh = hilbert(Signal_f);
 phh = angle(xh);
 WrappedPhase = phh;
-TDPhase = unwrap(phh);
+WrappedPhase = WrappedPhase(20:end-20);%Cut off edges to minimize edge effect
+TDPhase = unwrap(phh(20:end-20));
 
     w = diff(TDPhase).*(2*2/pi);
     wi = w;
@@ -38,11 +39,12 @@ ti=t(2:end);
 tt=ti;
 tt(kk1)=[];
 wi(kk1)=[];
-wi=interp1(tt,wi,ti,'linear','extrap'); 
+wi=interp1(tt,wi,ti(20:end-20),'linear','extrap'); 
 %%
 phh4=phh(2:end);
 phh4(kk1)=[];
 phh4=interp1(tt,phh4,ti,'linear','extrap')';
+phh4 = phh4(20:end-20);%Cut off edges to minimize edge effects
 
 phhw = wrapToPi(phh4);
 
