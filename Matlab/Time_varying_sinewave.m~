@@ -7,13 +7,13 @@ f = STDFreq*randn(Order,1) + CentralFreq;
 TDSignal = [];
 TDPhase = [];
 for N = 1:Order
-    Period = round(1/f(N)/DT);
+    %Period = round(1/f(N)/DT);
     AngFreq = (2*pi)/Period;
     TempTime = 0:Period-1;
     TempSignal=cos(TempTime/Period*2*pi);
-    TDSignal = [TDSignal,TempSignal,TempSignal,TempSignal];
+    TDSignal = [TDSignal,TempSignal];
     TempPhase = AngFreq*TempTime;
-    TDPhase = [TDPhase,TempPhase,TempPhase,TempPhase];
+    TDPhase = [TDPhase,TempPhase];
 end
 if length(Time)<length(TDSignal)
     fprintf('The specified length was too short \nto accomodate the order and sampling frequency.\n Length was changed to %d\n',length(TDSignal))
