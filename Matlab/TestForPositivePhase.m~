@@ -1,0 +1,27 @@
+clear all; clc;
+%%
+CentralFreq = 0.2;
+STDFreq = CentralFreq*0.1;
+Order = 12;
+Length = 120;
+DT = 0.1;
+Graphic = 1;
+
+SNRMin = -10;
+SNRMax = -10;
+NoiseSteps = SNRMax-SNRMin+1;
+NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
+
+
+f1 = CentralFreq-(0.5*CentralFreq);
+f2 = CentralFreq+(0.5*CentralFreq);
+Filt=1;
+
+Differences = [];
+%%
+for N = 1:50
+[TDSignal, TDPhase , TDPhaseUnwrap, Time, ~] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic);
+NoisySignal = awgn(TDSignal,NoiseVec,'measured');
+[WTDPhase, WWrappedPhase] =  wavelet_interp(NoisySignal, DT, Filt,f1, f2, Graphic);
+Difference =WWrappedPhase -TDPhase;
+Differences = [Differences,mean(Difference)

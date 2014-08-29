@@ -1,0 +1,19 @@
+function LatexTableFromData( OutputLocation, varargin )
+%%
+DummyVector = varagin{1};
+fileID = fopen(OutputLocation,'rw');
+fprintf(fileID,'\\begin{tabular}{|');
+for N = 1:length(DummyVector)
+    fprintf(fileID,'c|'); 
+end
+
+FormatSpec = fprintf('%s');
+for N = 1:length(DummyVector)-1
+    FormatSpec = fprintf('& %d'); 
+end
+FormatSpec = fprintf('%s');
+
+fprintf(fileID,'}\n');
+
+end
+
