@@ -1,4 +1,8 @@
 function LatexTableFromData( OutputLocation, varargin )
+%varagin should be a set of unidimensional cell arrays of strings
+%The first cell array should have an empty '' string followed by the line
+%titles
+%The rest of the cell arrays are formated: 'row title', 'value',...,'value'
 %%
 DummyVector = varargin{1};
 fileID = fopen(OutputLocation,'w');
