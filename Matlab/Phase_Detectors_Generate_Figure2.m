@@ -19,3 +19,9 @@ errorbar(NoiseVec,PhaseDiff_WaveMean,PhaseDiff_WaveSTD,'r-')
     xlim([-81 61])
     ylim([-0.2 0.2])
     
+%% Export table data
+Row1 = {num2str(NoiseVec(51)),[num2str(PhaseDiff_HilbMean(51)) ' $\pm$ ' num2str(PhaseDiff_HilbSTD(51))],[num2str(PhaseDiff_WaveMean(51)) ' $\pm$ ' num2str(PhaseDiff_WaveSTD(51))]};
+
+OutputLocation = '/Users/nickmitrou/Documents/SFU/PhD/Projects/Phase_detectors/Manuscript/TestTable.txt';
+
+LatexTableFromData( OutputLocation, Row1 );
