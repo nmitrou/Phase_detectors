@@ -1,4 +1,4 @@
-function [TDPhase, WrappedPhase] =  hilbert_interp(Signal_f,Dt,Filt, f1,f2,Graphic)
+function [TDPhase, TDPhaseCut, WrappedPhase] =  hilbert_interp(Signal_f,DT,Filt, f1,f2,Graphic)
 %% Hilbert Interp %%
 % function purpose is to use the hilbert transform of a signal and estimate
 % the instantaneous phase and frequency of the signal
@@ -11,7 +11,7 @@ function [TDPhase, WrappedPhase] =  hilbert_interp(Signal_f,Dt,Filt, f1,f2,Graph
 %%%%%%%%%% Outputs %%%%%%%%%%
 % TDPhase - unwrapped instantaneous phase with phase slips interpolated
 
-Fs = 1/Dt;  % Sampling Frequency
+Fs = 1/DT;  % Sampling Frequency
 %FOR MYO
 N   = 6;    % Order
 % Construct an FDESIGN object and call its BUTTER method.
@@ -25,19 +25,23 @@ end
 xh = hilbert(Signal_f);
 phh = angle(xh);
 WrappedPhase = phh;
-WrappedPhase = WrappedPhase(30:end-30);%Cut off edges to minimize edge effect
-TDPhase = unwrap(phh(30:end-30))+2*pi;
+WrappedPhase = WrappedPhase;%Cut off edges to minimize edge effect
+TDPhase = unwrap(phh);
+
+CutS = ceil(3/f1*DT);
+
+TDPhaseCut = TDPhase(CutS:end-CutS);
 
     w = diff(TDPhase).*(2*2/pi);
     wi = w;
 %% find data points where inst. frequency is outside filter pass band, and interpolate across those points
- t = Dt:Dt:length(Signal_f)*Dt;
+ t = DT:DT:length(Signal_f)*DT;
  k1=find(wi<0);
  kk1=[k1;k1+1;k1-1];
  kk1(kk1<=0)=[];
  kk1(kk1>length(wi))=[];
  ti=t(2:end);
- ti = ti(30:end-30);
+ ti = ti;
  tt=ti;
  tt(kk1)=[];
 % wi(kk1)=[];
@@ -49,7 +53,7 @@ TDPhase = unwrap(phh(30:end-30))+2*pi;
 phh4=WrappedPhase(2:end);
 phh4(kk1)=[];
 phh4=interp1(tt,phh4,ti,'linear','extrap')';
-phh4 = phh4(30:end-30);%Cut off edges to minimize edge effects
+phh4 = phh4;%Cut off edges to minimize edge effects
 
 phhw = wrapToPi(phh4);
 
@@ -63,10 +67,10 @@ if Graphic == 1
     b2 = b1 + h + s;
     
     
-    tp = Dt:Dt:length(phhw)*Dt;
+    tp = DT:DT:length(phhw)*DT;
     
     subplot('Position',[l,b2,w,h])
-    plot(t,Signal,'k-')
+    plot(t,Signal_f,'k-')
     ylabel 'Amplitude'
     set(gca,'XTickLabel','')
     subplot('Position',[l,b1,w,h])

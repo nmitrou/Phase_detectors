@@ -33,18 +33,22 @@ tic
 CentralFreq = 0.2;
 STDFreq = CentralFreq*0.1;
 Order = 12;
-Length = 120;
+Length = 300;
 DT = 0.1;
-Graphic = 0;
+Graphic = 1;
 
-SNRMin = -100;
-SNRMax = 4;
-NoiseSteps = 50;
+SNRMin = -10;
+SNRMax = 0;
+NoiseSteps = SNRMax-SNRMin+1;
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
 
 
-Trials = 4;
+Trials = 1;
 %%
+    f1 = CentralFreq-(0.5*CentralFreq);
+    
+    CutS = ceil(3/f1/DT);
+    
 Difference_Hilb = [];
 MeanEst_Hilb = [];
 Difference_Wave = [];
@@ -53,7 +57,7 @@ MeanDiff_Hilb = zeros([Trials,NoiseSteps]);
 STDDiff_Hilb = zeros([Trials,NoiseSteps]);
 MeanDiff_Wave = zeros([Trials,NoiseSteps]);
 STDDiff_Wave = zeros([Trials,NoiseSteps]);
-Filt = 1;
+Filt = 0;
 for k = 1:Trials
     
     [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,Difference_Hilb1,...
@@ -67,7 +71,7 @@ end
 
 toc
 %
-Graphic=1;
+% Graphic=0;
 if Graphic == 1
 %% Plot TDSignal
 
@@ -126,7 +130,7 @@ legend('Hilbert','Wavelet')
 figure(4);clf;
 length(MeanEst_Hilb(:,1))
 length(MeanDiff_Hilb(:,1))
-plot(Time,Difference_Hilb(:,1),'k*',Time,Difference_Wave(:,1),'r*')
+plot(Time(CutS:end-CutS),Difference_Hilb(:,1),'k*',Time(CutS:end-CutS),Difference_Wave(:,1),'r*')
 %ylim([-1.5 1.5])
 title 'Bland-Altman plot for smallest SNR'
 xlabel 'Mean Estimated phase'

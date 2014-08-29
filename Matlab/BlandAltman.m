@@ -1,5 +1,5 @@
 
-function [Difference,MeanEst,MeanDiff,STDDiff] = BlandAltman(Sig1,Sig2,Graphic, FigNo)
+function [Difference,MeanEst,MeanDiff,STDDiff] = BlandAltman(Sig1,Sig2,Graphic,FigNo,f1)
 %%
 Size = size(Sig1);
 if Size(1)>Size(2)
@@ -7,6 +7,7 @@ if Size(1)>Size(2)
 else
     EstPhases = [Sig1; Sig2]';
 end
+
 MeanEst = mean(EstPhases,2);
 
 Difference = Sig1 - Sig2;
