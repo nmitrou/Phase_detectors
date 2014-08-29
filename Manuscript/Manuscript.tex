@@ -15,7 +15,6 @@
 %% http://www.ieee.org/
 
 
-
 % *** Authors should verify (and, if needed, correct) their LaTeX system  ***
 % *** with the testflow diagnostic prior to trusting their LaTeX platform ***
 % *** with production work. IEEE's font choices can trigger bugs that do  ***
@@ -63,6 +62,8 @@
 % draft mode.
 %
 \documentclass[journal,draftcls]{IEEEtran}
+
+\usepackage{graphicx}
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
 % manually specify the path to it like:
@@ -614,6 +615,19 @@ Subsubsection text here.
 % Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
 % floats. This can be corrected via the \fnbelowfloat command of the
 % stfloats package.
+\section{Results}
+\begin{figure}[ht] 
+\centering
+	\includegraphics[width=0.9\columnwidth]{/Users/alexandrelaurin/Documents/Work/Projects/Phase_Detectors/Results/Figure01.eps}
+\caption{}
+\end{figure}
+
+
+\begin{figure}[ht] 
+\centering
+	\includegraphics[width=0.9\columnwidth]{/Users/alexandrelaurin/Documents/Work/Projects/Phase_Detectors/Results/Figure02.eps}
+\caption{}
+\end{figure}
 
 
 
