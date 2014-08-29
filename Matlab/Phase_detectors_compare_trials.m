@@ -89,9 +89,9 @@ ylim([ymin ymax])
 text(((xmax-xmin)/2),-1.4,'Time (s)','HorizontalAlignment','center')
 text(0,-6,'Ampltidude','HorizontalAlignment','center','Rotation',90)
 %% Plot True, Hilbert and Wavelet Phase
-Time = Time(30:end-30);
+Time = Time;
 figure(2); clf;
-plot(Time,TDPhaseUnwrap(30:end-30),'k-',Time,unwrap(TDPhase_Hilb),'bo',Time,TDPhase_Wave,'ro')
+plot(Time,TDPhaseUnwrap,'k-',Time,unwrap(TDPhase_Hilb),'bo',Time,TDPhase_Wave,'ro')
 xlim([0 100])
 xlabel 'Time (s)'
 ylabel 'Phase (rad)'

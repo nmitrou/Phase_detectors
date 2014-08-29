@@ -45,7 +45,7 @@ YMin = 1.1*min(GWNSignal(:,SNRLoc));
 figure(1); clf
 
 subplot('Position',[l,b3,w,h])
-    plot(Time,TDSignal(30:end-30),'k-')
+    plot(Time,TDSignal,'k-')
         ylim([-1.3 1.3])
         set(gca,'XTickLabel','')
         box off
@@ -54,7 +54,7 @@ subplot('Position',[l,b3,w,h])
 
         
 subplot('Position',[l,b2,w,h])
-    plot(Time,GWNSignal(30:end-30,SNRLoc),'k-')
+    plot(Time,GWNSignal(:,SNRLoc),'k-')
         ylim([YMin YMax])
         set(gca,'XTickLabel','')
         box off
@@ -63,16 +63,17 @@ subplot('Position',[l,b2,w,h])
 
         
 subplot('Position',[l,b1,w,h])
-    plot(Time,TDPhaseUnwrap(30:end-30),'k--'); hold on
+    plot(Time,TDPhaseUnwrap,'k--'); hold on
     plot(Time,NoisyPhase_Hilb,'color',DGrey)
     plot(Time,NoisyPhase_Wave,'color',LGrey)
         legend('True','Hilbert','Wavelet','Location','NorthWest')
+        ylim([-5 180])
         box off
         text(-15,100,'Phase (rad)','FontName',FontN,'FontSize',FontSz,'HorizontalAlignment','Center','Rotation',90)
         text(60,-40,'Time (s)','FontName',FontN,'FontSize',FontSz,'HorizontalAlignment','Center','Rotation',0)
         text(-20,200,'C','FontName',FontN,'FontSize',FontSz+4,'FontWeight','Bold','HorizontalAlignment','Center','Rotation',0)
 %%
-print('-depsc2','/Users/nickmitrou/Documents/SFU/PhD/Projects/Phase_detectors/Results/Figure1.eps')
+print('-depsc2','/Users/nickmitrou/Documents/SFU/PhD/Projects/Phase_detectors/Results/Figure01.eps')
 
 
 
