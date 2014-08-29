@@ -4,7 +4,7 @@ function [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,...
     Difference_Hilb,MeanEst_Hilb,MeanDiff_Hilb,STDDiff_Hilb,...
     Difference_Wave,MeanEst_Wave,MeanDiff_Wave,STDDiff_Wave] = ...
     Phase_detectors_compare_run(CentralFreq,STDFreq,Order,Length,DT,...
-    Graphic,SNRMin,SNRMax,NoiseSteps)
+    Graphic,SNRMin,SNRMax,NoiseSteps, Filt)
 %%
 [TDSignal, TDPhase , TDPhaseUnwrap, Time, ~] = Time_varying_sinewave(CentralFreq, STDFreq, Order, Length, DT, Graphic);
 
@@ -12,8 +12,8 @@ function [Time,TDSignal,TDPhaseUnwrap,TDPhase_Hilb,TDPhase_Wave,...
 NoiseVec = linspace(SNRMin,SNRMax,NoiseSteps);
 
 GWNSignal = zeros([Length/DT+1,NoiseSteps]);
-for k = 1:NoiseSteps
-    GWNSignal(:,k) = awgn(TDSignal,NoiseVec(k),'measured','linear');
+for k = 1:length(NoiseVec)
+    GWNSignal(:,k) = awgn(TDSignal,NoiseVec(k),'measured');
 end
 
 % Estimate phase with hilbert transform
@@ -21,21 +21,21 @@ f1 = CentralFreq-(0.5*CentralFreq);
 f2 = CentralFreq+(0.5*CentralFreq);
 
 
-TDPhase_Hilb =  hilbert_interp(TDSignal,DT,f1,f2,Graphic);
+TDPhase_Hilb =  hilbert_interp(TDSignal,DT,Filt,f1,f2,Graphic);
 
 GWNPhase_Hilb = zeros([Length/DT+1,NoiseSteps]);
 GWNWrappedPhase_Hilb = zeros([Length/DT+1,NoiseSteps]);
 for k = 1:NoiseSteps
-    [GWNPhase_Hilb(:,k), GWNWrappedPhase_Hilb(:,k)] = hilbert_interp(GWNSignal(:,k),DT,f1,f2,Graphic);
+    [GWNPhase_Hilb(:,k), GWNWrappedPhase_Hilb(:,k)] = hilbert_interp(GWNSignal(:,k),DT,Filt, f1,f2,Graphic);
 end
 % Estimate phase with wavelet transform
 
-TDPhase_Wave =  wavelet_interp(TDSignal, DT, Graphic);
+TDPhase_Wave =  wavelet_interp(TDSignal, DT,Filt, f1, f2, Graphic);
 
 GWNPhase_Wave = zeros([Length/DT+1,NoiseSteps]);
 GWNWrappedPhase_Wave = zeros([Length/DT+1,NoiseSteps]);
 for k = 1:NoiseSteps
-    [GWNPhase_Wave(:,k), GWNWrappedPhase_Wave(:,k)] = wavelet_interp(GWNSignal(:,k), DT, Graphic);
+    [GWNPhase_Wave(:,k), GWNWrappedPhase_Wave(:,k)] = wavelet_interp(GWNSignal(:,k), DT, Filt, f1, f2, Graphic);
 end
 
 % Determine agreement between each estimate and the true phase (Bland-Altman)

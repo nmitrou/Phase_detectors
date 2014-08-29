@@ -1,4 +1,4 @@
-function [TDPhase, WrappedPhase] =  wavelet_interp(TDSignal, DT, Graphic)
+function [TDPhase, WrappedPhase] =  wavelet_interp(TDSignal, DT, Filt,f1, f2, Graphic)
 %%
 Time = 0:length(TDSignal)-1;
 Time=Time.*DT;
@@ -8,6 +8,19 @@ pad=1; %zero-pad signals
 s0=0.5; %set initial scale
 mother='Morlet'; %wavelet shape
 param=6; %initial wavelet order
+
+Fs = 1/DT;  % Sampling Frequency
+%FOR MYO
+N   = 6;    % Order
+% Construct an FDESIGN object and call its BUTTER method.
+h  = fdesign.bandpass('N,F3dB1,F3dB2', N, f1, f2, Fs);
+Hd = design(h, 'butter');
+[b,a]=sos2tf(Hd.sosMatrix,Hd.ScaleValues);
+
+if Filt
+    TDSignal = filtfilt(b,a,TDSignal); %bandpass filter the input signal
+end
+
 
 %computes the wavelets
 [WN,Period,~] = wavelet(TDSignal,DT,pad,dj,s0,J1,mother,param);
@@ -26,8 +39,10 @@ for k = 1:Size
     [~,TempPeriod] = max(Power(:,k));
     Phase_max(k) = angle(WN(TempPeriod,k));
 end
+Phase_max = Phase_max(30:end-30); %Cut off edges to minimize edge effects
 WrappedPhase = Phase_max';
-TDPhase = unwrap(Phase_max)';
+% WrappedPhase = wrapToPi(WrappedPhase);
+TDPhase = unwrap(Phase_max)'+2*pi;
 % size(Phase_max)
 % TDPhase = wrapToPi(Phase_max_u)';
 if Graphic
