@@ -466,7 +466,11 @@
 
 \begin{abstract}
 %\boldmath
-The estimation of the phase of a signal is often central to physiological signal analysis. This study is specifically interested in identifying phase for the purpose of characterizing the relationship between two signals. You could be, for example, looking to characterize the relationship between two arguably related signals such as during renal autoregulation or the spontaneous baroreflex. 
+The estimation of the phase of a signal over time is often central to physiological signal analysis. This study is specifically interested in identifying phase for the purpose of characterizing the relationship between two signals. You could be, for example, looking to characterize the relationship between two potentially related signals such as during renal autoregulation or the spontaneous baroreflex. There are different tools at the disposal of scientists wanting to so this kind of work, the most popular being the Hilbert transform, the wavelet transform, the short-time Fourier transform, and simple peak detection.
+
+This study tests the validity of these techniques in conditions of varying noise. We create in-silico data of which the pseudo-frequency varies over time in a known way. We then and add noise from -50 to 50 dB to it and use the 4 techniques to recover phase and see who wins.
+
+We then give 4 examples of actual in-vivo data and use the 4 techniques to obtain phase information. We discuss which technique is the most relevant in the given context.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -477,7 +481,7 @@ The estimation of the phase of a signal is often central to physiological signal
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-IEEEtran, journal, \LaTeX, paper, template.
+phase, wavelet transform, Fourier transform, Hilbert Transform, physiology, signal analysis.
 \end{IEEEkeywords}
 
 
@@ -513,25 +517,28 @@ IEEEtran, journal, \LaTeX, paper, template.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
-for IEEE journal papers produced under \LaTeX\ using
-IEEEtran.cls version 1.7 and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
+\IEEEPARstart{T}{he phase} of physiological signals in the time domain often holds relevant information about the underlying processes. For example, the phase of a RR-interval time series can tell you about the breathing patterns of the subject. Phase, for all its importance, is often misunderstood and misused. In the case of a single frequency cosine wave, the phase goes from $-\pi$ at any given trough, to $0$ at the next peak, and on to $\pi$ at the next peak. Since every cycle begins where the last one ended, a phase of $\pi$ is the same as a phase of $\pi$ and so phase is conventionally said to exist in the interval $]-\pi,\pi]$. Some conventions choose the interval to be $[0,2\pi[$, we have chosen the former for consistency.
 
-\hfill mds
+One thing should be made clear. Frequency is a mathematical concept that implies that the signal repeats itself exactly infinitely. In the case that the signal is not infinite, or that its frequency changes in time, one can refer to its \textit{pseudo-frequency}. It is understood the the term frequency in the remainder of the text actually refers to pseudo-frequency, and we use the terms interchangeably.
+
+There are 4 widely-used tools to estimate the phase of physiological signals in the time domain. They are:
+\begin{enumerate}
+\item{the wavelet transform;}
+\item{the Hilbert transform;}
+\item{the short-time Fourier transform;}
+\item{simple peak detection.}
+\end{enumerate}
+
+We wanted to know which of these is the best in which conditions.
+
+\hfill al
  
-\hfill January 11, 2007
+\hfill August, 2014
 
-\subsection{Subsection Heading Here}
-Subsection text here.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
 
 
 % An example of a floating figure using the graphicx package.
@@ -615,6 +622,29 @@ Subsubsection text here.
 % Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
 % floats. This can be corrected via the \fnbelowfloat command of the
 % stfloats package.
+\section{Methods}
+\subsection{In-Silico signal creation}
+
+\subsection{Analysis}
+\subsubsection{wavelet transform}
+\subsubsection{Hilbert transform}
+\subsubsection{short-time Fourier transform}
+\subsubsection{simple peak detection}
+
+\subsection{In-Vivo signal acquisition}
+\subsubsection{Alex's stuff}
+\subsubsection{Jess' stuff}
+\subsubsection{Nick's stuff}
+\subsubsection{Talyor's stuff}
+
+
+
+
+
+
+
+
+
 \section{Results}
 \begin{figure}[ht] 
 \centering
