@@ -366,7 +366,7 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
-%\usepackage{url}
+\usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
 % systems. The latest version can be obtained at:
@@ -523,13 +523,18 @@ One thing should be made clear. Frequency is a mathematical concept that implies
 
 There are 4 widely-used tools to estimate the phase of physiological signals in the time domain. They are:
 \begin{enumerate}
-\item{the wavelet transform;}
-\item{the Hilbert transform;}
-\item{the short-time Fourier transform;}
-\item{simple peak detection.}
+\item the wavelet transform;
+\item the Hilbert transform;
+\item the short-time Fourier transform;
+\item simple peak detection.
 \end{enumerate}
 
-We wanted to know which of these is the best in which conditions.
+We wanted to know which of these is the best in increasing noise conditions. Furthermore, we explore and interpret these techniques in \textit{in-vivo} signals. To this end, we use the signals:
+\begin{enumerate}
+\item human RR-interval and systolic blood pressure (SBP)
+\item human muscular electricity
+\item rat cortical perfusion and SBP
+\end{enumerate}
 
 \hfill al
  
@@ -624,18 +629,24 @@ We wanted to know which of these is the best in which conditions.
 % stfloats package.
 \section{Methods}
 \subsection{In-Silico signal creation}
+In order to model signals that exhibit Mayer-wave-like properties, we created signals whose frequency $f$ would change randomly in a normal distribution $f(\mu, \sigma)$ around a central frequency $\mu=0.1$ Hz, and standard deviation $\sigma=0.01$. The signal is defined by parts, every part being a single-cycle cosine wave. It was designed to change frequencies every cycle, have a sampling frequency of 100 Hz, and create 5 minutes of signal [Figure \ref{fig: signal_example} A].
 
-\subsection{Analysis}
-\subsubsection{wavelet transform}
-\subsubsection{Hilbert transform}
-\subsubsection{short-time Fourier transform}
-\subsubsection{simple peak detection}
+Noise was added for signal-to-noise ratio SNR $\in [-100, 100]$ dB, in 1 dB increments. 
 
 \subsection{In-Vivo signal acquisition}
 \subsubsection{Alex's stuff}
 \subsubsection{Jess' stuff}
 \subsubsection{Nick's stuff}
 \subsubsection{Talyor's stuff}
+
+
+\subsection{Analysis}
+\subsubsection{wavelet transform}
+The wavelet transform of a signal is its decomposition in frequency and time. For example, if you have a signal that is a cosine wave of frequency $\alpha$ during a certain time, you would expect its wavelet transform at that time and frequency to be relatively high. Conversely, a random noisy signal should have a wavelet transform that is relatively low for all times and frequencies. For a great introduction on the subject, aimed at scientists, see \cite{farge_wavelet_1992}, and \cite{torrence_practical_1998}.
+
+\subsubsection{Hilbert transform}
+\subsubsection{short-time Fourier transform}
+\subsubsection{simple peak detection}
 
 
 
@@ -649,7 +660,8 @@ We wanted to know which of these is the best in which conditions.
 \begin{figure}[ht] 
 \centering
 	\includegraphics[width=0.9\columnwidth]{/Users/alexandrelaurin/Documents/Work/Projects/Phase_Detectors/Results/Figure01.eps}
-\caption{}
+\caption{Example signals and phase stimulates, \textit{in-silico}, for the first 2 minutes of 5. \textbf{A} Clean signal. Signal-to-noise ratio (SNR) = $\infty$. \textbf{B} A noisy signal. SNR = -10 dB. \textbf{C} Unwrapped phase estimates for Hilbert, wavelet, and peak-detection techniques at SNR = -10 dB.}
+\label{fig: signal_example}
 \end{figure}
 
 
@@ -723,20 +735,13 @@ The authors would like to thank...
 % http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
 % The IEEEtran BibTeX style support page is at:
 % http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
+\bibliography{OutlineBib}
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
-
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-\end{thebibliography}
 
 % biography section
 % 
