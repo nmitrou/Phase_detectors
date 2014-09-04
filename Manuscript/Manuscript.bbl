@@ -37,4 +37,9 @@ C.~Torrence and G.~P. Compo, ``A practical guide to wavelet analysis,''
   \url{http://journals.ametsoc.org/doi/abs/10.1175/1520-0477%281998%29079%3C0061%3AAPGTWA%3E2.0.CO%3B2}
 \BIBentrySTDinterwordspacing
 
+\bibitem{claerbout_fundamentals_1985}
+J.~F. Claerbout, \emph{\BIBforeignlanguage{English}{Fundamentals of Geophysical
+  Data Processing: With Applications to Petroleum Prospecting}}.\hskip 1em plus
+  0.5em minus 0.4em\relax Palo Alto, {CA}: Blackwell Science Inc, Jun. 1985.
+
 \end{thebibliography}

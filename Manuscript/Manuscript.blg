@@ -13,44 +13,44 @@ Database file #1: OutlineBib.bib
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 2 entries,
+You've used 3 entries,
             4039 wiz_defined-function locations,
-            826 strings with 7685 characters,
-and the built_in function-call counts, 1853 in all, are:
-= -- 163
-> -- 27
+            833 strings with 7863 characters,
+and the built_in function-call counts, 2201 in all, are:
+= -- 185
+> -- 31
 < -- 20
-+ -- 16
-- -- 3
-* -- 110
-:= -- 316
-add.period$ -- 4
-call.type$ -- 2
++ -- 18
+- -- 4
+* -- 126
+:= -- 374
+add.period$ -- 6
+call.type$ -- 3
 change.case$ -- 2
 chr.to.int$ -- 42
-cite$ -- 2
-duplicate$ -- 118
-empty$ -- 119
-format.name$ -- 4
-if$ -- 398
+cite$ -- 3
+duplicate$ -- 148
+empty$ -- 167
+format.name$ -- 5
+if$ -- 478
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 17
-newline$ -- 33
-num.names$ -- 2
-pop$ -- 23
+int.to.str$ -- 3
+missing$ -- 23
+newline$ -- 36
+num.names$ -- 3
+pop$ -- 42
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 139
+skip$ -- 164
 stack$ -- 0
 substring$ -- 100
-swap$ -- 112
+swap$ -- 129
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 2
+type$ -- 3
 warning$ -- 0
-while$ -- 10
-width$ -- 3
-write$ -- 50
+while$ -- 11
+width$ -- 4
+write$ -- 57

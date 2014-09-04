@@ -525,7 +525,6 @@ There are 4 widely-used tools to estimate the phase of physiological signals in 
 \begin{enumerate}
 \item the wavelet transform;
 \item the Hilbert transform;
-\item the short-time Fourier transform;
 \item simple peak detection.
 \end{enumerate}
 
@@ -631,7 +630,7 @@ We wanted to know which of these is the best in increasing noise conditions. Fur
 \subsection{In-Silico signal creation}
 In order to model signals that exhibit Mayer-wave-like properties, we created signals whose frequency $f$ would change randomly in a normal distribution $f(\mu, \sigma)$ around a central frequency $\mu=0.1$ Hz, and standard deviation $\sigma=0.01$. The signal is defined by parts, every part being a single-cycle cosine wave. It was designed to change frequencies every cycle, have a sampling frequency of 100 Hz, and create 5 minutes of signal [Figure \ref{fig: signal_example} A].
 
-Noise was added for signal-to-noise ratio SNR $\in [-100, 100]$ dB, in 1 dB increments. 
+Noise was added for signal-to-noise ratio SNR $\in [-100, 100]$ dB, in 1 dB increments. A set of 100 of these signals was created.
 
 \subsection{In-Vivo signal acquisition}
 \subsubsection{Alex's stuff}
@@ -641,22 +640,38 @@ Noise was added for signal-to-noise ratio SNR $\in [-100, 100]$ dB, in 1 dB incr
 
 
 \subsection{Analysis}
+All signals were bandpass filtered using a order 6 Butterworth filter in the band $f\in[0.5\mu, 1.5\mu]$ Hz (where $\mu$ is the known or assumed central frequency).
+
+Once the phase time-series was obtained, we computed the difference between the phase of the signal and the various estimates for every SNR. We then computed the mean and standard deviation of these differences.
 \subsubsection{wavelet transform}
-The wavelet transform of a signal is its decomposition in frequency and time. For example, if you have a signal that is a cosine wave of frequency $\alpha$ during a certain time, you would expect its wavelet transform at that time and frequency to be relatively high. Conversely, a random noisy signal should have a wavelet transform that is relatively low for all times and frequencies. For a great introduction on the subject, aimed at scientists, see \cite{farge_wavelet_1992}, and \cite{torrence_practical_1998}.
+The wavelet transform of a signal is its decomposition in frequency and time. For example, if you have a signal that is a cosine wave of frequency $\alpha$ during a certain time, you would expect the magnitude of its wavelet transform at that time and frequency to be relatively high. Conversely, a random noisy signal should have a wavelet transform magnitude that is relatively low for all times and frequencies. For a great introduction on the subject, aimed at scientists, see \cite{farge_wavelet_1992}, and \cite{torrence_practical_1998}.
+
+More specifically, the wavelet transform of a signal $s(t)$ is the discreet $L^2$-inner product  of $s$ with a wavelet family $\psi_{l}$, resulting in wavelet coefficients
+$$
+\tilde{f}(l,t) = \sum_ts(t)\psi^*_{l}(t)
+$$
+where $\psi^*$ is the complex conjugate of $\psi$. For example, at time $t_1$ and frequency $a$, the wavelet transform will return the number $\tilde{s}(a,t_1)=\alpha i+\beta$ where the power is $|\sqrt{\alpha^2+\beta^2}|$, and the phase is $\tan^{-1}(\beta/\alpha)=0$.
+
+After computing the wavelet transform, we identified the frequency at which the power was the greatest and there obtained the phase. Since we did this at every time point, we obtained a phase time-series.
+
+Wavelet software was provided by C. Torrence and G. Compo, and is available at \url{http://atoc.colorado.edu/research/wavelets/}.
 
 \subsubsection{Hilbert transform}
-\subsubsection{short-time Fourier transform}
+The Hilbert transform of a signal, that we will denote by $\hat{s}(t)$, returns phase estimates that are similar to those obtained through the wavelet transform by computing a weighted average of phases obtained in a Fourier transform where the weights are the power at respective frequencies \cite{claerbout_fundamentals_1985}.
+
 \subsubsection{simple peak detection}
+Peak detection can also be used to estimate the phase of a signal. The minimum peak height was set to half the interquartile range of the signal itself, and the minimum distance between peaks was set to $\frac{2}{3\mu}$, which corresponds to the roll-off frequency of our bandpass filter.
 
-
-
-
+Once the peak locations $t_n$ were obtained, the phase was computed as the straight line segments from $t_{n}$ to $t_{n+1}$ that are 0 at $t_n$ and $2\pi$ at $t_{n+1}$.
 
 
 
 
 
 \section{Results}
+
+\subsection{In-silico data}
+
 \begin{figure}[ht] 
 \centering
 	\includegraphics[width=0.9\columnwidth]{/Users/alexandrelaurin/Documents/Work/Projects/Phase_Detectors/Results/Figure01.eps}
@@ -668,9 +683,13 @@ The wavelet transform of a signal is its decomposition in frequency and time. Fo
 \begin{figure}[ht] 
 \centering
 	\includegraphics[width=0.9\columnwidth]{/Users/alexandrelaurin/Documents/Work/Projects/Phase_Detectors/Results/Figure02.eps}
-\caption{}
+\caption{Mean $\pm$ standard deviation of the differences between phase and estimated phase for SNR $\in[-50,50]$.}
 \end{figure}
 
+\subsection{Alex's stuff}
+\subsection{Jess' stuff}
+\subsection{Nick's stuff}
+\subsection{Talyor's stuff}
 
 
 \section{Conclusion}
